@@ -38,7 +38,7 @@ export const AddComment = ({ postId, data, isOpen = false }) => {
             <div className={styles.root}>
               <Avatar
                 classes={{ root: styles.avatar }}
-                src={data.user.imageUrl ? `http://localhost:3001${data.imageUrl}` : ''}
+                src={data.user.imageUrl ? `${process.env.REACT_APP_API_URL}${data.imageUrl}` : ''}
               />
               <div className={styles.form}>
                 <TextField
