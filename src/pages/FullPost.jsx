@@ -21,8 +21,8 @@ export const FullPost = () => {
   const [isLoadingPost, setIsLoadingPost] = useState(true);
   const IsLoadingComments = comments.status === 'loading'
 
-  const {id} = useParams();
-  
+  const { id } = useParams();
+
   useEffect(() => {
     axios.get(`/posts/${id}`)
       .then(res => {
@@ -31,12 +31,12 @@ export const FullPost = () => {
       })
       .catch(err => console.log('Error with get /posts/:id query\n' + err))
 
-      dispatch(fetchAllComments())
+    dispatch(fetchAllComments())
   }, [])
 
 
-  if(isLoadingPost){
-    return <Post isLoading={isLoadingPost}/>
+  if (isLoadingPost) {
+    return <Post isLoading={isLoadingPost} />
   }
 
   return (
@@ -44,7 +44,7 @@ export const FullPost = () => {
       <Post
         id={data._id}
         title={data.title}
-        imageUrl={data.imageUrl ? `http://localhost:3001${data.imageUrl}` : ''}
+        imageUrl={data.imageUrl ? `http://:3001${data.imageUrl}` : ''}
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
@@ -53,7 +53,7 @@ export const FullPost = () => {
         isFullPost
       >
         <p>
-          <ReactMarkdown children={data.text}/>
+          <ReactMarkdown children={data.text} />
         </p>
       </Post>
       <CommentsBlock
@@ -61,7 +61,7 @@ export const FullPost = () => {
         userData={userData}
         isLoading={IsLoadingComments}
       >
-        <AddComment postId={id} data={data} isOpen={userData !== null}/>
+        <AddComment postId={id} data={data} isOpen={userData !== null} />
       </CommentsBlock>
     </>
   );
